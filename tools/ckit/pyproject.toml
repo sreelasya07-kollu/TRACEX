@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.33.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ckit"
+version = "0.0.1"
+description = "CaptureKit tooling: validate, inspect and convert Scan Bundles."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "LicenseRef-Proprietary"
+dependencies = [
+    "mcap>=1.6.0",
+    "numpy>=2.3",
+    "opencv-python>=5.0.0.93",
+    "pydantic>=2.14.3",
+    "typer>=0.29.1",
+    "jsonschema>=4.26.0",
+    "pycolmap>=4.2.1",
+    "protobuf>=3.20.3",
+    "matplotlib>=3.11.2",
+]
+
+[project.optional-dependencies]
+nerf = ["nerfstudio>=1.1.5"]
+dev = ["pytest>=9.2.0", "ruff>=0.17.4"]
+
+[project.scripts]
+ckit = "ckit.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ckit"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["docker: needs the dev-server stack (CKIT_DOCKER_TESTS=1, see dev-server/failure_test.sh)"]

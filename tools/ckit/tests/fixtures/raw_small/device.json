@@ -1,0 +1,26 @@
+{
+  "platform": "synthetic",
+  "model": "synth-G8-tracking_loss",
+  "os": "none",
+  "app_version": "0.0.1",
+  "pose_convention": "arkit",
+  "imu_frame": "arkit_camera",
+  "q_camera_from_imu": [
+    0.0,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "clock_base": "synthetic",
+  "clock_offset_ns": 0,
+  "seed": 3,
+  "scenario": "G8",
+  "ground_truth": {
+    "room": [
+      3.6,
+      3.2,
+      2.5
+    ],
+    "boxes": []
+  }
+}
