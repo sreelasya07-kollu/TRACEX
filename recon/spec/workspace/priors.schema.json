@@ -1,0 +1,249 @@
+{
+ "$defs": {
+  "FramePrior": {
+   "additionalProperties": false,
+   "properties": {
+    "T_world_camera": {
+     "anyOf": [
+      {
+       "items": {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "T World Camera"
+    },
+    "depth": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Depth"
+    },
+    "depth_conf": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Depth Conf"
+    },
+    "id": {
+     "pattern": "^\\d{6}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "image": {
+     "title": "Image",
+     "type": "string"
+    },
+    "timestamp_ns": {
+     "title": "Timestamp Ns",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "id",
+    "timestamp_ns",
+    "image"
+   ],
+   "title": "FramePrior",
+   "type": "object"
+  },
+  "Intrinsics": {
+   "additionalProperties": false,
+   "properties": {
+    "cx": {
+     "description": "principal point x [px]",
+     "title": "Cx",
+     "type": "number"
+    },
+    "cy": {
+     "description": "principal point y [px]",
+     "title": "Cy",
+     "type": "number"
+    },
+    "fx": {
+     "description": "focal length x [px]",
+     "exclusiveMinimum": 0,
+     "title": "Fx",
+     "type": "number"
+    },
+    "fy": {
+     "description": "focal length y [px]",
+     "exclusiveMinimum": 0,
+     "title": "Fy",
+     "type": "number"
+    }
+   },
+   "required": [
+    "fx",
+    "fy",
+    "cx",
+    "cy"
+   ],
+   "title": "Intrinsics",
+   "type": "object"
+  },
+  "PoseNoise": {
+   "additionalProperties": false,
+   "properties": {
+    "jitter_rot_deg": {
+     "title": "Jitter Rot Deg",
+     "type": "number"
+    },
+    "jitter_trans_m": {
+     "title": "Jitter Trans M",
+     "type": "number"
+    },
+    "preset": {
+     "title": "Preset",
+     "type": "string"
+    },
+    "seed": {
+     "title": "Seed",
+     "type": "integer"
+    },
+    "trans_drift_per_m": {
+     "description": "random-walk translation drift [m per m travelled]",
+     "title": "Trans Drift Per M",
+     "type": "number"
+    },
+    "yaw_drift_deg_per_m": {
+     "description": "random-walk yaw drift [deg per m travelled]",
+     "title": "Yaw Drift Deg Per M",
+     "type": "number"
+    }
+   },
+   "required": [
+    "preset",
+    "seed",
+    "trans_drift_per_m",
+    "yaw_drift_deg_per_m",
+    "jitter_trans_m",
+    "jitter_rot_deg"
+   ],
+   "title": "PoseNoise",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "depth_scale_m": {
+   "default": 0.001,
+   "title": "Depth Scale M",
+   "type": "number"
+  },
+  "depth_source": {
+   "enum": [
+    "lidar",
+    "kinect",
+    "rendered",
+    "none"
+   ],
+   "title": "Depth Source",
+   "type": "string"
+  },
+  "frames": {
+   "items": {
+    "$ref": "#/$defs/FramePrior"
+   },
+   "title": "Frames",
+   "type": "array"
+  },
+  "gravity_source": {
+   "enum": [
+    "arkit",
+    "imu_accel",
+    "dataset_axis",
+    "none"
+   ],
+   "title": "Gravity Source",
+   "type": "string"
+  },
+  "gravity_world": {
+   "anyOf": [
+    {
+     "items": {
+      "type": "number"
+     },
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "unit vector pointing down",
+   "title": "Gravity World"
+  },
+  "height": {
+   "exclusiveMinimum": 0,
+   "title": "Height",
+   "type": "integer"
+  },
+  "intrinsics": {
+   "$ref": "#/$defs/Intrinsics"
+  },
+  "pose_noise": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/PoseNoise"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "pose_source": {
+   "enum": [
+    "arkit",
+    "arcore",
+    "dataset_gt",
+    "dataset_gt_noisy",
+    "none"
+   ],
+   "title": "Pose Source",
+   "type": "string"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  },
+  "width": {
+   "exclusiveMinimum": 0,
+   "title": "Width",
+   "type": "integer"
+  }
+ },
+ "required": [
+  "width",
+  "height",
+  "intrinsics",
+  "frames",
+  "pose_source",
+  "gravity_source",
+  "depth_source"
+ ],
+ "title": "Priors",
+ "type": "object"
+}

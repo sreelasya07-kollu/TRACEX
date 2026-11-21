@@ -1,0 +1,383 @@
+{
+ "$defs": {
+  "BundleIntrinsics": {
+   "additionalProperties": false,
+   "properties": {
+    "cx": {
+     "title": "Cx",
+     "type": "number"
+    },
+    "cy": {
+     "title": "Cy",
+     "type": "number"
+    },
+    "distortion": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Distortion"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "fx": {
+     "exclusiveMinimum": 0,
+     "title": "Fx",
+     "type": "number"
+    },
+    "fy": {
+     "exclusiveMinimum": 0,
+     "title": "Fy",
+     "type": "number"
+    },
+    "height": {
+     "exclusiveMinimum": 0,
+     "title": "Height",
+     "type": "integer"
+    },
+    "width": {
+     "exclusiveMinimum": 0,
+     "title": "Width",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "fx",
+    "fy",
+    "cx",
+    "cy",
+    "width",
+    "height"
+   ],
+   "title": "BundleIntrinsics",
+   "type": "object"
+  },
+  "Consent": {
+   "additionalProperties": false,
+   "properties": {
+    "faces_blurred": {
+     "default": false,
+     "title": "Faces Blurred",
+     "type": "boolean"
+    },
+    "scan_processing": {
+     "title": "Scan Processing",
+     "type": "boolean"
+    },
+    "training_use": {
+     "default": false,
+     "title": "Training Use",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "scan_processing"
+   ],
+   "title": "Consent",
+   "type": "object"
+  },
+  "Coordinates": {
+   "additionalProperties": false,
+   "properties": {
+    "camera": {
+     "description": "camera axes of T_world_camera: opencv x right y down z fwd; arkit/opengl x right y up z backward",
+     "enum": [
+      "opencv",
+      "arkit",
+      "opengl"
+     ],
+     "title": "Camera",
+     "type": "string"
+    },
+    "world_up": {
+     "description": "up axis of the pose world frame",
+     "enum": [
+      "+Y",
+      "+Z"
+     ],
+     "title": "World Up",
+     "type": "string"
+    }
+   },
+   "required": [
+    "world_up",
+    "camera"
+   ],
+   "title": "Coordinates",
+   "type": "object"
+  },
+  "Device": {
+   "additionalProperties": false,
+   "properties": {
+    "app_version": {
+     "title": "App Version",
+     "type": "string"
+    },
+    "model": {
+     "title": "Model",
+     "type": "string"
+    },
+    "os": {
+     "title": "Os",
+     "type": "string"
+    }
+   },
+   "required": [
+    "model",
+    "os",
+    "app_version"
+   ],
+   "title": "Device",
+   "type": "object"
+  },
+  "Distortion": {
+   "additionalProperties": false,
+   "properties": {
+    "coeffs": {
+     "description": "k1, k2, p1, p2[, k3]",
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 5,
+     "minItems": 4,
+     "title": "Coeffs",
+     "type": "array"
+    },
+    "model": {
+     "const": "opencv",
+     "default": "opencv",
+     "title": "Model",
+     "type": "string"
+    }
+   },
+   "required": [
+    "coeffs"
+   ],
+   "title": "Distortion",
+   "type": "object"
+  },
+  "Frame": {
+   "additionalProperties": false,
+   "properties": {
+    "T_world_camera": {
+     "anyOf": [
+      {
+       "items": {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "T World Camera"
+    },
+    "depth": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Depth"
+    },
+    "depth_confidence": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Depth Confidence"
+    },
+    "exposure_s": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Exposure S"
+    },
+    "id": {
+     "pattern": "^[A-Za-z0-9_\\-]{1,32}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "image": {
+     "title": "Image",
+     "type": "string"
+    },
+    "iso": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Iso"
+    },
+    "timestamp_ns": {
+     "title": "Timestamp Ns",
+     "type": "integer"
+    },
+    "tracking_state": {
+     "default": "normal",
+     "enum": [
+      "normal",
+      "limited",
+      "not_available"
+     ],
+     "title": "Tracking State",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "timestamp_ns",
+    "image"
+   ],
+   "title": "Frame",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "capture_id": {
+   "title": "Capture Id",
+   "type": "string"
+  },
+  "consent": {
+   "$ref": "#/$defs/Consent"
+  },
+  "coordinates": {
+   "$ref": "#/$defs/Coordinates"
+  },
+  "created": {
+   "title": "Created",
+   "type": "string"
+  },
+  "device": {
+   "$ref": "#/$defs/Device"
+  },
+  "files": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "relative path -> sha256 of every file but manifest",
+   "title": "Files",
+   "type": "object"
+  },
+  "frames": {
+   "items": {
+    "$ref": "#/$defs/Frame"
+   },
+   "title": "Frames",
+   "type": "array"
+  },
+  "gravity_source": {
+   "default": "none",
+   "enum": [
+    "arkit",
+    "imu_accel",
+    "none"
+   ],
+   "title": "Gravity Source",
+   "type": "string"
+  },
+  "gravity_world": {
+   "anyOf": [
+    {
+     "items": {
+      "type": "number"
+     },
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "unit vector pointing DOWN",
+   "title": "Gravity World"
+  },
+  "intrinsics": {
+   "$ref": "#/$defs/BundleIntrinsics"
+  },
+  "pose_source": {
+   "enum": [
+    "arkit",
+    "arcore",
+    "none"
+   ],
+   "title": "Pose Source",
+   "type": "string"
+  },
+  "quality_report": {
+   "anyOf": [
+    {
+     "additionalProperties": true,
+     "type": "object"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Quality Report"
+  },
+  "schema_version": {
+   "title": "Schema Version",
+   "type": "string"
+  },
+  "tier": {
+   "enum": [
+    "A",
+    "B",
+    "C"
+   ],
+   "title": "Tier",
+   "type": "string"
+  },
+  "units": {
+   "const": "metres",
+   "default": "metres",
+   "title": "Units",
+   "type": "string"
+  }
+ },
+ "required": [
+  "schema_version",
+  "capture_id",
+  "created",
+  "device",
+  "tier",
+  "coordinates",
+  "pose_source",
+  "intrinsics",
+  "frames",
+  "consent",
+  "files"
+ ],
+ "title": "ScanBundleManifest",
+ "type": "object"
+}

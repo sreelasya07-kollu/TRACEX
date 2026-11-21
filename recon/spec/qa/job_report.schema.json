@@ -1,0 +1,197 @@
+{
+ "$defs": {
+  "GateResult": {
+   "additionalProperties": false,
+   "properties": {
+    "category": {
+     "description": "capture: fixable by rescanning; output: a processing-quality result",
+     "enum": [
+      "capture",
+      "output"
+     ],
+     "title": "Category",
+     "type": "string"
+    },
+    "message": {
+     "title": "Message",
+     "type": "string"
+    },
+    "name": {
+     "title": "Name",
+     "type": "string"
+    },
+    "status": {
+     "enum": [
+      "pass",
+      "warn",
+      "fail",
+      "skipped"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "threshold": {
+     "title": "Threshold",
+     "type": "string"
+    },
+    "value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Value"
+    }
+   },
+   "required": [
+    "name",
+    "category",
+    "status",
+    "threshold",
+    "message"
+   ],
+   "title": "GateResult",
+   "type": "object"
+  },
+  "RescanRegion": {
+   "additionalProperties": false,
+   "description": "A surface patch the scan did not observe well enough, anchored in the world frame.",
+   "properties": {
+    "area_m2": {
+     "title": "Area M2",
+     "type": "number"
+    },
+    "corners": {
+     "description": "4 world-frame corners (metres)",
+     "items": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array"
+     },
+     "title": "Corners",
+     "type": "array"
+    },
+    "instruction": {
+     "title": "Instruction",
+     "type": "string"
+    },
+    "priority": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Priority",
+     "type": "number"
+    },
+    "reason": {
+     "enum": [
+      "unseen",
+      "few_views",
+      "narrow_baseline"
+     ],
+     "title": "Reason",
+     "type": "string"
+    },
+    "surface": {
+     "enum": [
+      "wall",
+      "floor",
+      "ceiling"
+     ],
+     "title": "Surface",
+     "type": "string"
+    },
+    "wall_index": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "index of the floor-polygon edge",
+     "title": "Wall Index"
+    }
+   },
+   "required": [
+    "surface",
+    "reason",
+    "corners",
+    "area_m2",
+    "priority",
+    "instruction"
+   ],
+   "title": "RescanRegion",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "coverage": {
+   "additionalProperties": {
+    "type": "number"
+   },
+   "description": "observed fraction per surface type",
+   "title": "Coverage",
+   "type": "object"
+  },
+  "gates": {
+   "items": {
+    "$ref": "#/$defs/GateResult"
+   },
+   "title": "Gates",
+   "type": "array"
+  },
+  "inputs": {
+   "additionalProperties": true,
+   "title": "Inputs",
+   "type": "object"
+  },
+  "notes": {
+   "default": [],
+   "items": {
+    "type": "string"
+   },
+   "title": "Notes",
+   "type": "array"
+  },
+  "rescan": {
+   "items": {
+    "$ref": "#/$defs/RescanRegion"
+   },
+   "title": "Rescan",
+   "type": "array"
+  },
+  "verdict": {
+   "enum": [
+    "pass",
+    "pass_with_warnings",
+    "needs_rescan"
+   ],
+   "title": "Verdict",
+   "type": "string"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  }
+ },
+ "required": [
+  "verdict",
+  "gates",
+  "coverage",
+  "rescan",
+  "inputs"
+ ],
+ "title": "JobReport",
+ "type": "object"
+}

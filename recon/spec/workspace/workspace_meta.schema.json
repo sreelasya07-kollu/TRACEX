@@ -1,0 +1,78 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "adapter_version": {
+   "title": "Adapter Version",
+   "type": "string"
+  },
+  "dataset": {
+   "title": "Dataset",
+   "type": "string"
+  },
+  "distortion_removed": {
+   "title": "Distortion Removed",
+   "type": "boolean"
+  },
+  "downscale": {
+   "title": "Downscale",
+   "type": "integer"
+  },
+  "frame_ids_source": {
+   "description": "indices into the dataset's own frame list",
+   "items": {
+    "type": "integer"
+   },
+   "title": "Frame Ids Source",
+   "type": "array"
+  },
+  "max_frames": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Max Frames"
+  },
+  "notes": {
+   "default": [],
+   "items": {
+    "type": "string"
+   },
+   "title": "Notes",
+   "type": "array"
+  },
+  "scene": {
+   "title": "Scene",
+   "type": "string"
+  },
+  "source_path": {
+   "title": "Source Path",
+   "type": "string"
+  },
+  "stride": {
+   "title": "Stride",
+   "type": "integer"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  }
+ },
+ "required": [
+  "dataset",
+  "scene",
+  "source_path",
+  "frame_ids_source",
+  "stride",
+  "max_frames",
+  "downscale",
+  "distortion_removed",
+  "adapter_version"
+ ],
+ "title": "WorkspaceMeta",
+ "type": "object"
+}

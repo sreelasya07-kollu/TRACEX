@@ -1,0 +1,183 @@
+{
+ "$defs": {
+  "DepthModelInfo": {
+   "additionalProperties": false,
+   "properties": {
+    "hf_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Hf Id"
+    },
+    "kind": {
+     "enum": [
+      "metric",
+      "relative",
+      "inverse_relative",
+      "sensor",
+      "mvs"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "licence": {
+     "title": "Licence",
+     "type": "string"
+    },
+    "name": {
+     "title": "Name",
+     "type": "string"
+    },
+    "revision": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Revision"
+    }
+   },
+   "required": [
+    "name",
+    "hf_id",
+    "revision",
+    "kind",
+    "licence"
+   ],
+   "title": "DepthModelInfo",
+   "type": "object"
+  },
+  "FrameAlignment": {
+   "additionalProperties": false,
+   "properties": {
+    "inliers": {
+     "default": 0,
+     "title": "Inliers",
+     "type": "integer"
+    },
+    "n_points": {
+     "default": 0,
+     "title": "N Points",
+     "type": "integer"
+    },
+    "residual_m": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Residual M"
+    },
+    "scale": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Scale"
+    },
+    "scale_smoothed": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Scale Smoothed"
+    },
+    "shift": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "title": "Shift"
+    },
+    "source": {
+     "enum": [
+      "sensor",
+      "mono",
+      "mvs"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "status": {
+     "enum": [
+      "ok",
+      "rejected_few_points",
+      "rejected_residual",
+      "no_alignment"
+     ],
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "source",
+    "scale",
+    "shift",
+    "status"
+   ],
+   "title": "FrameAlignment",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "frames": {
+   "additionalProperties": {
+    "$ref": "#/$defs/FrameAlignment"
+   },
+   "title": "Frames",
+   "type": "object"
+  },
+  "global_scale": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Global Scale"
+  },
+  "model": {
+   "$ref": "#/$defs/DepthModelInfo"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  }
+ },
+ "required": [
+  "model",
+  "frames"
+ ],
+ "title": "DepthAlignment",
+ "type": "object"
+}

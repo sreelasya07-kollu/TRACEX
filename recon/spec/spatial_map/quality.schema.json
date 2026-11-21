@@ -1,0 +1,144 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "ceiling_height_m": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Ceiling Height M"
+  },
+  "depth_source": {
+   "title": "Depth Source",
+   "type": "string"
+  },
+  "depth_valid_fraction": {
+   "title": "Depth Valid Fraction",
+   "type": "number"
+  },
+  "floor_area_m2": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Floor Area M2"
+  },
+  "floor_polygon_source": {
+   "title": "Floor Polygon Source",
+   "type": "string"
+  },
+  "floor_tilt_deg": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Floor Tilt Deg"
+  },
+  "mean_reproj_px": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Mean Reproj Px"
+  },
+  "n_frames": {
+   "title": "N Frames",
+   "type": "integer"
+  },
+  "n_planes": {
+   "title": "N Planes",
+   "type": "integer"
+  },
+  "n_points": {
+   "title": "N Points",
+   "type": "integer"
+  },
+  "n_walls": {
+   "title": "N Walls",
+   "type": "integer"
+  },
+  "reg_ratio": {
+   "title": "Reg Ratio",
+   "type": "number"
+  },
+  "registered": {
+   "title": "Registered",
+   "type": "integer"
+  },
+  "scale_confidence": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Scale Confidence"
+  },
+  "scale_source": {
+   "title": "Scale Source",
+   "type": "string"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  },
+  "wall_floor_max_dev_deg": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Wall Floor Max Dev Deg"
+  },
+  "warnings": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Warnings",
+   "type": "array"
+  }
+ },
+ "required": [
+  "n_frames",
+  "registered",
+  "reg_ratio",
+  "mean_reproj_px",
+  "scale_source",
+  "scale_confidence",
+  "depth_source",
+  "depth_valid_fraction",
+  "n_points",
+  "n_planes",
+  "n_walls",
+  "wall_floor_max_dev_deg",
+  "floor_tilt_deg",
+  "ceiling_height_m",
+  "floor_area_m2",
+  "floor_polygon_source",
+  "warnings"
+ ],
+ "title": "SpatialQuality",
+ "type": "object"
+}

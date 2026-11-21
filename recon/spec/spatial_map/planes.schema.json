@@ -1,0 +1,112 @@
+{
+ "$defs": {
+  "Plane": {
+   "additionalProperties": false,
+   "properties": {
+    "area_m2": {
+     "description": "area of the inlier footprint (convex hull)",
+     "minimum": 0,
+     "title": "Area M2",
+     "type": "number"
+    },
+    "d": {
+     "description": "plane: normal . x + d = 0 (metres)",
+     "title": "D",
+     "type": "number"
+    },
+    "id": {
+     "title": "Id",
+     "type": "integer"
+    },
+    "inlier_count": {
+     "minimum": 0,
+     "title": "Inlier Count",
+     "type": "integer"
+    },
+    "label": {
+     "enum": [
+      "floor",
+      "ceiling",
+      "wall",
+      "other"
+     ],
+     "title": "Label",
+     "type": "string"
+    },
+    "normal": {
+     "description": "unit normal, world frame (+Z up)",
+     "items": {
+      "type": "number"
+     },
+     "title": "Normal",
+     "type": "array"
+    },
+    "polygon": {
+     "description": "convex hull of inliers projected onto the plane, 3D world points (metres)",
+     "items": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array"
+     },
+     "title": "Polygon",
+     "type": "array"
+    },
+    "rms_m": {
+     "description": "RMS point-to-plane distance of inliers",
+     "minimum": 0,
+     "title": "Rms M",
+     "type": "number"
+    }
+   },
+   "required": [
+    "id",
+    "label",
+    "normal",
+    "d",
+    "inlier_count",
+    "area_m2",
+    "rms_m",
+    "polygon"
+   ],
+   "title": "Plane",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "n_assigned": {
+   "title": "N Assigned",
+   "type": "integer"
+  },
+  "n_points": {
+   "title": "N Points",
+   "type": "integer"
+  },
+  "params": {
+   "additionalProperties": true,
+   "title": "Params",
+   "type": "object"
+  },
+  "planes": {
+   "items": {
+    "$ref": "#/$defs/Plane"
+   },
+   "title": "Planes",
+   "type": "array"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  }
+ },
+ "required": [
+  "planes",
+  "n_points",
+  "n_assigned",
+  "params"
+ ],
+ "title": "PlanesFile",
+ "type": "object"
+}

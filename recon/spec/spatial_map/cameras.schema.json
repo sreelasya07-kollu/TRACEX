@@ -1,0 +1,113 @@
+{
+ "$defs": {
+  "Intrinsics": {
+   "additionalProperties": false,
+   "properties": {
+    "cx": {
+     "description": "principal point x [px]",
+     "title": "Cx",
+     "type": "number"
+    },
+    "cy": {
+     "description": "principal point y [px]",
+     "title": "Cy",
+     "type": "number"
+    },
+    "fx": {
+     "description": "focal length x [px]",
+     "exclusiveMinimum": 0,
+     "title": "Fx",
+     "type": "number"
+    },
+    "fy": {
+     "description": "focal length y [px]",
+     "exclusiveMinimum": 0,
+     "title": "Fy",
+     "type": "number"
+    }
+   },
+   "required": [
+    "fx",
+    "fy",
+    "cx",
+    "cy"
+   ],
+   "title": "Intrinsics",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "depth_height": {
+   "exclusiveMinimum": 0,
+   "title": "Depth Height",
+   "type": "integer"
+  },
+  "depth_intrinsics": {
+   "$ref": "#/$defs/Intrinsics"
+  },
+  "depth_width": {
+   "exclusiveMinimum": 0,
+   "title": "Depth Width",
+   "type": "integer"
+  },
+  "frames": {
+   "additionalProperties": {
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "type": "array"
+    },
+    "type": "array"
+   },
+   "description": "frame id -> T_world_camera (refined)",
+   "title": "Frames",
+   "type": "object"
+  },
+  "gravity_aligned": {
+   "title": "Gravity Aligned",
+   "type": "boolean"
+  },
+  "height": {
+   "exclusiveMinimum": 0,
+   "title": "Height",
+   "type": "integer"
+  },
+  "intrinsics": {
+   "$ref": "#/$defs/Intrinsics"
+  },
+  "metric": {
+   "title": "Metric",
+   "type": "boolean"
+  },
+  "pose_source": {
+   "title": "Pose Source",
+   "type": "string"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  },
+  "width": {
+   "exclusiveMinimum": 0,
+   "title": "Width",
+   "type": "integer"
+  }
+ },
+ "required": [
+  "width",
+  "height",
+  "intrinsics",
+  "depth_width",
+  "depth_height",
+  "depth_intrinsics",
+  "pose_source",
+  "metric",
+  "gravity_aligned",
+  "frames"
+ ],
+ "title": "CamerasFile",
+ "type": "object"
+}

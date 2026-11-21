@@ -1,0 +1,127 @@
+{
+ "$defs": {
+  "OutputEntry": {
+   "additionalProperties": false,
+   "description": "One Part 4 product. Mesh and splat are separate entries with separate metrics: neither\nis derived from the other.",
+   "properties": {
+    "files": {
+     "default": [],
+     "description": "paths relative to the reconstruction root",
+     "items": {
+      "type": "string"
+     },
+     "title": "Files",
+     "type": "array"
+    },
+    "metrics": {
+     "additionalProperties": true,
+     "default": {},
+     "title": "Metrics",
+     "type": "object"
+    },
+    "reason": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "why skipped / failed",
+     "title": "Reason"
+    },
+    "status": {
+     "enum": [
+      "ok",
+      "skipped",
+      "failed"
+     ],
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "status"
+   ],
+   "title": "OutputEntry",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "created": {
+   "title": "Created",
+   "type": "string"
+  },
+  "files": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "relative path -> sha256 of every file but this one",
+   "title": "Files",
+   "type": "object"
+  },
+  "format": {
+   "const": "room.reconstruction",
+   "default": "room.reconstruction",
+   "title": "Format",
+   "type": "string"
+  },
+  "outputs": {
+   "additionalProperties": {
+    "$ref": "#/$defs/OutputEntry"
+   },
+   "description": "sparse, dense, mesh, splat",
+   "title": "Outputs",
+   "type": "object"
+  },
+  "params": {
+   "additionalProperties": true,
+   "title": "Params",
+   "type": "object"
+  },
+  "peak_ram_mb": {
+   "title": "Peak Ram Mb",
+   "type": "number"
+  },
+  "spatial_map": {
+   "additionalProperties": true,
+   "description": "path, manifest_sha256 and quality warnings of the input",
+   "title": "Spatial Map",
+   "type": "object"
+  },
+  "timings_s": {
+   "additionalProperties": {
+    "type": "number"
+   },
+   "title": "Timings S",
+   "type": "object"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  },
+  "versions": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Versions",
+   "type": "object"
+  }
+ },
+ "required": [
+  "created",
+  "spatial_map",
+  "outputs",
+  "files",
+  "timings_s",
+  "peak_ram_mb",
+  "params",
+  "versions"
+ ],
+ "title": "ReconstructionManifest",
+ "type": "object"
+}

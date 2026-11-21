@@ -1,0 +1,115 @@
+{
+ "$defs": {
+  "StageSummary": {
+   "additionalProperties": false,
+   "properties": {
+    "device": {
+     "title": "Device",
+     "type": "string"
+    },
+    "peak_ram_mb": {
+     "title": "Peak Ram Mb",
+     "type": "number"
+    },
+    "status": {
+     "enum": [
+      "ok",
+      "failed",
+      "partial"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "wall_time_s": {
+     "title": "Wall Time S",
+     "type": "number"
+    }
+   },
+   "required": [
+    "status",
+    "wall_time_s",
+    "peak_ram_mb",
+    "device"
+   ],
+   "title": "StageSummary",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "conventions": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Conventions",
+   "type": "object"
+  },
+  "created": {
+   "title": "Created",
+   "type": "string"
+  },
+  "files": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "description": "relative path -> sha256 of every file but this one",
+   "title": "Files",
+   "type": "object"
+  },
+  "format": {
+   "const": "room.spatial_map",
+   "default": "room.spatial_map",
+   "title": "Format",
+   "type": "string"
+  },
+  "frame_ids": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Frame Ids",
+   "type": "array"
+  },
+  "params": {
+   "additionalProperties": true,
+   "title": "Params",
+   "type": "object"
+  },
+  "source": {
+   "additionalProperties": true,
+   "description": "dataset / scene / source_path from workspace_meta.json",
+   "title": "Source",
+   "type": "object"
+  },
+  "stages": {
+   "additionalProperties": {
+    "$ref": "#/$defs/StageSummary"
+   },
+   "title": "Stages",
+   "type": "object"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  },
+  "versions": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Versions",
+   "type": "object"
+  }
+ },
+ "required": [
+  "created",
+  "source",
+  "frame_ids",
+  "files",
+  "stages",
+  "params",
+  "versions",
+  "conventions"
+ ],
+ "title": "SpatialMapManifest",
+ "type": "object"
+}

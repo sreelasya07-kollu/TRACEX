@@ -1,0 +1,105 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "device": {
+   "title": "Device",
+   "type": "string"
+  },
+  "ended": {
+   "title": "Ended",
+   "type": "string"
+  },
+  "inputs": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Inputs",
+   "type": "object"
+  },
+  "metrics": {
+   "additionalProperties": true,
+   "title": "Metrics",
+   "type": "object"
+  },
+  "notes": {
+   "default": [],
+   "items": {
+    "type": "string"
+   },
+   "title": "Notes",
+   "type": "array"
+  },
+  "outputs": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Outputs",
+   "type": "object"
+  },
+  "params": {
+   "additionalProperties": true,
+   "title": "Params",
+   "type": "object"
+  },
+  "peak_ram_mb": {
+   "title": "Peak Ram Mb",
+   "type": "number"
+  },
+  "peak_vram_mb": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Peak Vram Mb"
+  },
+  "stage": {
+   "title": "Stage",
+   "type": "string"
+  },
+  "started": {
+   "title": "Started",
+   "type": "string"
+  },
+  "status": {
+   "enum": [
+    "ok",
+    "failed",
+    "partial"
+   ],
+   "title": "Status",
+   "type": "string"
+  },
+  "versions": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Versions",
+   "type": "object"
+  },
+  "wall_time_s": {
+   "title": "Wall Time S",
+   "type": "number"
+  }
+ },
+ "required": [
+  "stage",
+  "status",
+  "started",
+  "ended",
+  "wall_time_s",
+  "device",
+  "peak_ram_mb",
+  "peak_vram_mb",
+  "versions",
+  "params",
+  "inputs",
+  "outputs",
+  "metrics"
+ ],
+ "title": "StageMeta",
+ "type": "object"
+}

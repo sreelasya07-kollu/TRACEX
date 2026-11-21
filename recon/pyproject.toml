@@ -1,0 +1,108 @@
+# roomscan-recon: Room Scanner Part 3 (spatial/) and Part 4 (recon/).
+# spatial and recon are independent: neither imports the other (enforced by
+# tests/test_module_boundaries.py). They exchange data only via on-disk formats (formats/).
+[build-system]
+requires = ["hatchling>=1.33.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "roomscan-recon"
+version = "0.1.0"
+requires-python = ">=3.11,<3.13"   # open3d 0.19 wheels: 3.11/3.12 only
+dependencies = [
+    # 0.20.0 rejected: ScalableTSDFVolume / VoxelBlockGrid return empty meshes (see PROGRESS.md)
+    "open3d==0.19.0",
+    "pycolmap==4.2.1",
+    "numpy>=2.3",
+    "scipy>=1.16",
+    "opencv-python>=5.0.0.93",
+    "pydantic>=2.14.3",
+    "jsonschema>=4.26.0",
+    "typer>=0.29.1",
+    "psutil>=7.2",
+    "matplotlib>=3.11",
+    "transformers>=5.22",
+    "huggingface-hub>=1.0",
+    "plyfile>=1.1",
+    "trimesh>=4.8",
+    "imageio>=2.37",
+    "torchmetrics[image]>=1.8",
+    "gsplat==1.5.3",      # Part 4 only (CUDA at runtime)
+    "torch>=2.14",        # flavour chosen via extra below
+    "ezdxf>=1.4",
+    "laspy[lazrs]>=2.5",
+]
+
+[project.optional-dependencies]
+# Choose exactly one: `uv sync --extra cpu` | `--extra cu126` | `--extra cu130`
+cpu = ["torch==2.14.1", "torchvision"]
+cu126 = ["torch==2.14.1", "torchvision"]
+cu130 = ["torch==2.14.1", "torchvision"]
+
+[dependency-groups]
+dev = ["pytest>=9.2.0", "ruff>=0.17.4"]
+data = ["remotezip>=0.12.6", "h5py>=3.16"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["spatial", "recon", "formats", "eval", "router", "qa", "export"]
+
+[tool.uv]
+conflicts = [[{ extra = "cpu" }, { extra = "cu126" }, { extra = "cu130" }]]
+default-groups = ["dev", "data"]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu", extra = "cpu" },
+  { index = "pytorch-cu126", extra = "cu126" },
+  { index = "pytorch-cu130", extra = "cu130" },
+]
+torchvision = [
+  { index = "pytorch-cpu", extra = "cpu" },
+  { index = "pytorch-cu126", extra = "cu126" },
+  { index = "pytorch-cu130", extra = "cu130" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# repo root first: dash 4.5.0 ships a stray top-level `benchmarks` package that shadows ours
+pythonpath = ["."]
+markers = [
+    "light: fast checks on synthetic/controlled data (CPU, seconds)",
+    "heavy: real-data benchmarks; write measured values to runs/test_results/",
+    "gpu(vram_gb=N): needs an NVIDIA GPU with >= N GB VRAM (skips with the requirement printed)",
+    "highmem(ram_gb=N): needs >= N GB total system RAM",
+    "largedisk(disk_gb=N): needs >= N GB free on the repo volume",
+    "longrun(hours=H): runs > ~1 h; skipped unless --run-longrun or RUN_LONGRUN=1",
+    "arkit: needs ARKitScenes (pending for the GPU test machine)",
+]
+addopts = "-p no:dash"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/heavy/render_docs.py" = ["E501"]   # Markdown table literals
+"benchmarks/phase3_suite.py" = ["E501"]     # Markdown table literals
+"scripts/render_phase_reports.py" = ["E501"]  # report text literals
+"formats/scanbundle.py" = ["E501"]  # validator message strings
+"tests/test_phase3_heavy.py" = ["E501"]

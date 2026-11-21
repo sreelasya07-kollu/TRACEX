@@ -1,0 +1,208 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "R_floor_up": {
+   "anyOf": [
+    {
+     "items": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array"
+     },
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "rotation taking the floor normal to +Z; NOT applied to the data",
+   "title": "R Floor Up"
+  },
+  "bbox_max": {
+   "items": {
+    "type": "number"
+   },
+   "title": "Bbox Max",
+   "type": "array"
+  },
+  "bbox_min": {
+   "items": {
+    "type": "number"
+   },
+   "title": "Bbox Min",
+   "type": "array"
+  },
+  "ceiling_height_m": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Ceiling Height M"
+  },
+  "ceiling_id": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Ceiling Id"
+  },
+  "ceiling_z": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Ceiling Z"
+  },
+  "floor_area_m2": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Floor Area M2"
+  },
+  "floor_id": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Floor Id"
+  },
+  "floor_polygon": {
+   "description": "2D (x, y) polygon in world frame, counter-clockwise, metres",
+   "items": {
+    "items": {
+     "type": "number"
+    },
+    "type": "array"
+   },
+   "title": "Floor Polygon",
+   "type": "array"
+  },
+  "floor_polygon_source": {
+   "enum": [
+    "wall_intersections",
+    "footprint_contour",
+    "floor_hull",
+    "none"
+   ],
+   "title": "Floor Polygon Source",
+   "type": "string"
+  },
+  "floor_tilt_deg": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "angle between the floor normal and +Z (residual gravity error)",
+   "title": "Floor Tilt Deg"
+  },
+  "floor_z": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Floor Z"
+  },
+  "gravity_world": {
+   "description": "unit vector pointing down",
+   "items": {
+    "type": "number"
+   },
+   "title": "Gravity World",
+   "type": "array"
+  },
+  "notes": {
+   "default": [],
+   "items": {
+    "type": "string"
+   },
+   "title": "Notes",
+   "type": "array"
+  },
+  "scale_confidence": {
+   "anyOf": [
+    {
+     "maximum": 1,
+     "minimum": 0,
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "HEURISTIC trust in the metric scale (not a calibrated probability); see spatial.room.run.scale_confidence",
+   "title": "Scale Confidence"
+  },
+  "scale_source": {
+   "enum": [
+    "metric_priors",
+    "sensor_depth",
+    "synthetic",
+    "unknown"
+   ],
+   "title": "Scale Source",
+   "type": "string"
+  },
+  "version": {
+   "default": "0.1.0",
+   "title": "Version",
+   "type": "string"
+  },
+  "wall_ids": {
+   "items": {
+    "type": "integer"
+   },
+   "title": "Wall Ids",
+   "type": "array"
+  }
+ },
+ "required": [
+  "floor_polygon",
+  "floor_polygon_source",
+  "floor_area_m2",
+  "floor_z",
+  "ceiling_z",
+  "ceiling_height_m",
+  "floor_id",
+  "ceiling_id",
+  "wall_ids",
+  "bbox_min",
+  "bbox_max",
+  "gravity_world",
+  "scale_source"
+ ],
+ "title": "RoomModel",
+ "type": "object"
+}
