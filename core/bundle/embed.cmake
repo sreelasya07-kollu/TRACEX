@@ -1,0 +1,5 @@
+file(READ "${IN}" hex HEX)
+string(LENGTH "${hex}" n)
+math(EXPR bytes "${n} / 2")
+string(REGEX REPLACE "([0-9a-f][0-9a-f])" "0x\\1," arr "${hex}")
+file(WRITE "${OUT}" "// Generated from capturekit.desc. Do not edit.\n#include \"capturekit/bundle/codec.hpp\"\nnamespace capturekit::bundle::codec {\nstatic const unsigned char kDesc[] = {${arr}};\nstd::string_view descriptor_set() { return {reinterpret_cast<const char*>(kDesc), ${bytes}}; }\n}\n")
