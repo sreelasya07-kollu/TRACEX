@@ -1,0 +1,66 @@
+# Build outputs
+/app/android/**/build/
+/app/android/.gradle/
+/app/android/local.properties
+/core/build/
+**/build/
+**/cmake-build-*/
+**/.gradle/
+
+# Binaries & Libraries
+*.apk
+*.aab
+*.so
+*.dylib
+*.dll
+*.exe
+*.o
+*.a
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# AI Assistants & Metadata
+.claude/
+.claude*
+CLAUDE.md
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Large datasets and scan bundles
+*.mcap
+*.ply
+*.splat
+data/raw/
+data/cache/

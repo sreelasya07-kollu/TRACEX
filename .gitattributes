@@ -1,0 +1,31 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# Explicit text files
+*.md text eol=lf
+*.py text eol=lf
+*.kt text eol=lf
+*.swift text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bin binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.jar binary
+*.so binary
+*.dylib binary
+*.dll binary
+*.exe binary

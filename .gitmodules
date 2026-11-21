@@ -1,0 +1,12 @@
+[submodule "core/third_party/nanobind"]
+	path = core/third_party/nanobind
+	url = https://github.com/wjakob/nanobind.git
+[submodule "core/third_party/eigen"]
+	path = core/third_party/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "core/third_party/mcap"]
+	path = core/third_party/mcap
+	url = https://github.com/foxglove/mcap.git
+[submodule "core/third_party/sophus"]
+	path = core/third_party/sophus
+	url = https://github.com/strasdat/Sophus.git
