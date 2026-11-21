@@ -1,0 +1,24 @@
+PLACEHOLDER TEXT - PENDING LEGAL OWNER
+This text has not been reviewed or approved by a legal owner. It must not be used for external participants. Until it is approved, scans may only be uploaded to the team's own test server by internal testers who have agreed to take part.
+
+What this app records
+While you scan, the app records camera images, how the phone moves (motion sensors and tracking), the phone model and system version, and the scan time. A scan is stored as a bundle in this app's private storage on your phone.
+
+People and private places
+A room scan can show people, screens, papers and other private things. Before you scan, switch screens off, put personal papers away, and ask other people to leave the room.
+
+Face blurring
+The app tries to blur faces in the saved images before they are written. This is best effort and may miss some faces. It does not blur screens, papers or other private details. Do not rely on it to protect anyone.
+
+Uploading (optional, off by default)
+If you turn on uploading below, finished scans may be sent to the team's server so they can be turned into a 3D model. Nothing is uploaded unless you allow it here. Retention period and who can see uploaded scans: to be decided (owner not yet assigned).
+
+Anonymous usage and crash reports (optional, off by default)
+If you turn this on, the app may send crash and performance reports that contain no scan images, no file names and no personal details. Retention: to be decided.
+
+Your choices
+You can scan without allowing either option above. You can withdraw your consent at any time on the home screen. Withdrawing stops new uploads and reports and removes your recorded choices from this phone. Scans already uploaded and scans already saved on this phone are not deleted by withdrawing; how to have them deleted: to be decided (owner not yet assigned).
+
+By pressing Accept you confirm that you have read this text and agree to a scan being recorded as described.
+
+Text version 1 - pending legal owner.

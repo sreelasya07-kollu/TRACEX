@@ -1,0 +1,297 @@
+{
+  "headlines": {
+    "FAIL": "This scan cannot be used. Please scan the room again.",
+    "WARN": "Scan saved with notes.",
+    "PASS": "Scan looks good."
+  },
+  "codes": {
+    "MISSING_MANIFEST": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Scan is incomplete",
+      "text": "The scan did not finish saving.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "ARCHIVE_UNREADABLE": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Scan file is damaged",
+      "text": "The scan's packed file could not be opened safely.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "MANIFEST_SCHEMA": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Scan data is damaged",
+      "text": "The scan's summary file is not readable.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "UNSUPPORTED_MAJOR": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "App update needed",
+      "text": "This scan was made by a newer version of the app.",
+      "action": "Update the app, then open the scan again.",
+      "next": "rescan"
+    },
+    "UNKNOWN_MINOR": {
+      "severity": "WARN",
+      "level": "structural",
+      "title": "Newer scan format",
+      "text": "This scan uses newer, optional data we do not know yet.",
+      "action": "Nothing. Extra data is ignored.",
+      "next": "proceed_with_note"
+    },
+    "CONSENT_MISSING": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Consent record missing",
+      "text": "The scan has no record that the person scanning accepted the capture terms.",
+      "action": "Accept the terms in the app, then scan the room again.",
+      "next": "rescan"
+    },
+    "REDACTION_MANIFEST_MISSING": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Privacy record missing",
+      "text": "The scan has no record of how faces were blurred.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "CAMERA_SCHEMA": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Camera data is damaged",
+      "text": "The camera description is missing or invalid.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "MISSING_FILE": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Scan is missing files",
+      "text": "Some files of the scan are missing.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "MCAP_TRUNCATED": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Scan stopped early",
+      "text": "The motion recording ends abruptly.",
+      "action": "Scan the room again; keep the app open until it says done.",
+      "next": "rescan"
+    },
+    "MCAP_UNREADABLE": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Scan data is damaged",
+      "text": "The motion recording cannot be read.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "MISSING_CHANNEL": {
+      "severity": "ERROR",
+      "level": "structural",
+      "title": "Sensor data missing",
+      "text": "A required sensor recording is missing (poses, motion or camera info).",
+      "action": "Scan again and allow camera and motion access.",
+      "next": "rescan"
+    },
+    "SHA256_MISMATCH": {
+      "severity": "ERROR",
+      "level": "integrity",
+      "title": "Scan data changed",
+      "text": "A file does not match its checksum, so it was damaged or edited.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "SIZE_MISMATCH": {
+      "severity": "ERROR",
+      "level": "integrity",
+      "title": "Scan data changed",
+      "text": "A file has a different size than recorded.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "REDACTION_ENTRY_BAD_PATH": {
+      "severity": "WARN",
+      "level": "integrity",
+      "title": "Odd privacy log entry",
+      "text": "The privacy log names a file outside the photo folder; it is ignored.",
+      "action": "Nothing. It is ignored.",
+      "next": "proceed_with_note"
+    },
+    "REDACTION_ENTRY_NO_FILE": {
+      "severity": "INFO",
+      "level": "integrity",
+      "title": "Blurred photo not saved",
+      "text": "The privacy log lists a photo that was not saved.",
+      "action": "Nothing needed.",
+      "next": "none"
+    },
+    "UNLISTED_FILE": {
+      "severity": "WARN",
+      "level": "integrity",
+      "title": "Extra file in scan",
+      "text": "The scan contains a file that is not listed.",
+      "action": "Nothing. It is ignored.",
+      "next": "proceed_with_note"
+    },
+    "NON_MONOTONIC_TIME": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Timing error",
+      "text": "Timestamps go backwards, so frames cannot be matched to poses.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "NAN_VALUE": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Invalid sensor values",
+      "text": "Some sensor readings are not valid numbers.",
+      "action": "Scan again; if it repeats, restart the phone.",
+      "next": "rescan"
+    },
+    "TIME_ZERO": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Timing error at the start",
+      "text": "The first camera position or camera info has no valid time, so frames cannot be matched to poses.",
+      "action": "Scan the room again; if it repeats, restart the app.",
+      "next": "rescan"
+    },
+    "NON_UNIT_QUATERNION": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Invalid camera rotations",
+      "text": "Some camera rotations are not valid.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "MISSING_INTRINSICS": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Camera info missing",
+      "text": "Camera lens information is missing for the first photos.",
+      "action": "Scan the room again.",
+      "next": "rescan"
+    },
+    "KEYFRAME_WITHOUT_POSE": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Photos without position",
+      "text": "Some photos have no tracked camera position.",
+      "action": "Scan again, moving slowly while tracking is good.",
+      "next": "rescan"
+    },
+    "KEYFRAME_FILE_MISSING": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "Photos are missing",
+      "text": "The scan lists photos that were not saved.",
+      "action": "Scan the room again; make sure storage is not full.",
+      "next": "rescan"
+    },
+    "COUNT_MISMATCH": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Counts differ",
+      "text": "Summary counts differ slightly from the recording.",
+      "action": "Nothing. The recording is used as is.",
+      "next": "proceed_with_note"
+    },
+    "KEYFRAME_TRACKING_LIMITED": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Shaky tracking in places",
+      "text": "Some photos were taken while tracking was weak.",
+      "action": "Optional: rescan those areas slowly with more light.",
+      "next": "proceed_with_note"
+    },
+    "POSE_GAP": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Tracking was lost briefly",
+      "text": "Tracking was interrupted for part of the scan.",
+      "action": "Optional: rescan the area where tracking was lost.",
+      "next": "proceed_with_note"
+    },
+    "NO_KEYFRAMES": {
+      "severity": "ERROR",
+      "level": "semantic",
+      "title": "No photos were saved",
+      "text": "The scan contains no usable photos, so no 3D result can be made.",
+      "action": "Scan the room again; walk slowly and keep the app open until it says done.",
+      "next": "rescan"
+    },
+    "FEW_KEYFRAMES": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Not many photos",
+      "text": "The scan has few usable photos, so the 3D result may have gaps.",
+      "action": "Walk the room again, slower, covering all walls.",
+      "next": "proceed_with_note"
+    },
+    "NO_AR_GEOMETRY": {
+      "severity": "INFO",
+      "level": "semantic",
+      "title": "No surface hints",
+      "text": "The phone did not report surfaces or feature points.",
+      "action": "Nothing needed.",
+      "next": "none"
+    },
+    "DETECTION_BAD_BOX": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Odd object boxes",
+      "text": "Some detected object boxes are not valid.",
+      "action": "Nothing. They are ignored.",
+      "next": "proceed_with_note"
+    },
+    "DETECTION_UNKNOWN_FRAME": {
+      "severity": "INFO",
+      "level": "semantic",
+      "title": "Detections without photo",
+      "text": "Some object detections refer to photos that are not in the scan.",
+      "action": "Nothing needed.",
+      "next": "none"
+    },
+    "GUIDE_OUTPUT_BAD_VALUE": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Odd room labels",
+      "text": "Some room outline, object or gap data in the scan is not valid.",
+      "action": "Nothing. It is ignored.",
+      "next": "proceed_with_note"
+    },
+    "LABEL_WALL_UNKNOWN": {
+      "severity": "INFO",
+      "level": "semantic",
+      "title": "Door or window without wall",
+      "text": "A door or window refers to a wall that is not in the room outline.",
+      "action": "Nothing needed.",
+      "next": "none"
+    },
+    "PARTIAL_BUNDLE": {
+      "severity": "WARN",
+      "level": "semantic",
+      "title": "Scan was cut short",
+      "text": "The scan was interrupted and recovered, so part of the room may be missing.",
+      "action": "Scan the missing part again.",
+      "next": "proceed_with_note"
+    },
+    "QUALITY_NOT_EVALUATED": {
+      "severity": "INFO",
+      "level": "quality",
+      "title": "Quality not checked",
+      "text": "Quality metrics were not available for this scan.",
+      "action": "Nothing needed.",
+      "next": "none"
+    }
+  }
+}

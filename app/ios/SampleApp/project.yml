@@ -1,0 +1,21 @@
+# XcodeGen spec for the iOS sample app: `brew install xcodegen && xcodegen` in this folder.
+name: CaptureKitSample
+options:
+  bundleIdPrefix: dev.capturekit
+  deploymentTarget: { iOS: "17.0" }
+packages:
+  CaptureKit: { path: .. }
+targets:
+  SampleApp:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    dependencies: [{ package: CaptureKit }]
+    info:
+      path: Sources/Info.plist
+      properties:
+        NSCameraUsageDescription: CaptureKit records camera frames to build a 3D room scan.
+        NSMotionUsageDescription: CaptureKit records motion sensors to measure capture quality.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        UIRequiredDeviceCapabilities: [arkit]

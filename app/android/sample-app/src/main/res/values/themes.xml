@@ -1,0 +1,8 @@
+<resources>
+    <!-- Full-screen, no action bar: the camera preview runs edge to edge. -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">#FF0A0A0B</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

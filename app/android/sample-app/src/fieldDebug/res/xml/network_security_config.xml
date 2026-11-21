@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- field debug only: cleartext allowed just for the local dev server (tusd :1080, verifier :8081).
+     dev-server defines no fixed LAN host, so: localhost (adb reverse) and 10.0.2.2 (emulator host alias). -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">localhost</domain>
+        <domain includeSubdomains="false">10.0.2.2</domain>
+    </domain-config>
+</network-security-config>
